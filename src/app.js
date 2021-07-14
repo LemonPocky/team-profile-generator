@@ -136,7 +136,6 @@ class App {
     this.employees.push(
       new Intern(answers.name, answers.id, answers.email, answers.school)
     );
-    console.log(this.employees);
     await this.addMenu();
   }
 
