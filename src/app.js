@@ -10,17 +10,27 @@ class App {
     this.employees = [];
   }
 
-  run() {
-    return this.addManager()
-      .then((resolve) => console.log('Done.'))
-      .catch((error) => {
-        console.log('Error! ' + error)
-        return this.run();
-      });
+  async run() {
+    try {
+      await this.addManager();
+    } catch(error) {
+      console.log('Error! ' + error);
+      console.log('Please try again.');
+      return this.run();
+    }
+
+    try {
+      await this.addMenu();
+      console.log('Done');
+    } catch(error) {
+      console.log("Error! " + error);
+      console.log("Please try again.");
+      return this.addMenu();
+    }
   }
 
-  addManager() {
-    return inquirer
+  async addManager() {
+    const answers = await inquirer
       .prompt([
         {
           type: "input",
@@ -42,16 +52,16 @@ class App {
           name: "office_number",
           message: "Please enter the Manager office number:",
         },
-      ])
-      .then((answers) => {
-        this.employees.push(
-          new Manager(answers.name, answers.id, answers.email, answers.office_number)
-        );
-        console.log(this.employees);
-      });
+      ]);
+    this.employees.push(
+      new Manager(answers.name, answers.id, answers.email, answers.office_number)
+    );
+    console.log(this.employees);
   }
 
-  addMenu() {}
+  async addMenu() {
+    
+  }
 
   addEngineer() {}
 
