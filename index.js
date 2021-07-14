@@ -1,4 +1,4 @@
-const App = require('./src/app');
+const App = require('./src/App');
 
 function init() {
   const app = new App();
