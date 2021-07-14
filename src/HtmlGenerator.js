@@ -6,6 +6,7 @@ const fs = require('fs/promises');
 class HtmlGenerator {
   constructor() {}
 
+  // Fills in the blanks in the Manager card
   buildManagerCard(employee) {
     return `
     <div class="col my-5">
@@ -28,6 +29,7 @@ class HtmlGenerator {
     `;
   }
 
+  // Fills in the blanks in the Engineer card
   buildEngineerCard(employee) {
     const githubLink = `https://github.com/${employee.getGithub()}`;
     return `
@@ -53,6 +55,7 @@ class HtmlGenerator {
     `;
   }
 
+  // Fills in the blanks in the Intern card
   buildInternCard(employee) {
     return `
     <div class="col my-5">
@@ -75,6 +78,7 @@ class HtmlGenerator {
     `;
   }
 
+  // Fills in the blank in the HTML template
   renderHtml(renderedCards) {
     return `
 <!DOCTYPE html>
@@ -100,6 +104,8 @@ class HtmlGenerator {
     `;
   }
 
+  // Function that creates the cards for each employee and 
+  // combines them into one string for the renderHtml function
   buildCards(employees) {
     return employees
       .map((employee) => {
@@ -117,11 +123,12 @@ class HtmlGenerator {
       .join("");
   }
 
+  // Entry function to generate an Html page using an array of Employee objects
   async generateHtml(employees) {
     const renderedCards = this.buildCards(employees);
     const html = this.renderHtml(renderedCards);
-    const filepath = "./dist/index.html"
-    await fs.writeFile(filepath, html);    
+    const filepath = "./dist/index.html";
+    await fs.writeFile(filepath, html);
     console.log("Profile HTML page generated at: " + filepath);
   }
 }
