@@ -1,3 +1,6 @@
+// Class that generates an employee profile html page
+
+// Required for file system writing
 const fs = require('fs/promises');
 
 class HtmlGenerator {
@@ -111,7 +114,7 @@ class HtmlGenerator {
             return "";
         }
       })
-      .join();
+      .join("");
   }
 
   async generateHtml(employees) {

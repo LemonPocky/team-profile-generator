@@ -1,3 +1,5 @@
+// Main controller for the CLI tool
+
 // Use inquirer for command line prompts
 const inquirer = require("inquirer");
 
@@ -8,6 +10,7 @@ const HtmlGenerator = require("./HtmlGenerator.js");
 
 class App {
   constructor() {
+    // Holds the list of employees to be generated
     this.employees = [];
   }
 
